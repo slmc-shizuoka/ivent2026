@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スマートライフAO富士校 — 年間イベント</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:   #1a6ef5;
+  --blue2:  #3b8cff;
+  --blue3:  #d0e6ff;
+  --blue4:  #e8f2ff;
+  --white:  #ffffff;
+  --ink:    #0a1f5c;
+  --ink2:   #2a3f8a;
+  --pop1:   #ffe066;
+  --pop2:   #ff6b9d;
+  --pop3:   #00d4b4;
+  --pop4:   #ff8c42;
+  --outline: 2.5px solid var(--ink);
+  --radius-pill: 999px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --shadow-pop: 4px 4px 0 var(--ink);
+  --shadow-pop-sm: 2px 2px 0 var(--ink);
+  --shadow-pop-lg: 6px 6px 0 var(--ink);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, var(--blue3) 2px, transparent 2px),
+    radial-gradient(circle, #ffe06644 2px, transparent 2px);
+  background-size: 48px 48px, 72px 72px;
+  background-position: 0 0, 24px 24px;
+  opacity: 0.55;
+}
+
+/* ── HEADER ── */
+.site-header {
+  position: relative;
+  z-index: 10;
+  background: var(--blue);
+  border-bottom: 3px solid var(--ink);
+  overflow: hidden;
+}
+.header-stripes {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 12px,
+    rgba(255,255,255,0.07) 12px, rgba(255,255,255,0.07) 24px
+  );
+}
+.header-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-logo {
+  background: var(--pop1);
+  border: var(--outline);
+  border-radius: var(--radius-md);
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  box-shadow: var(--shadow-pop);
+  flex-shrink: 0;
+  transform: rotate(-3deg);
+}
+.header-text { flex: 1; }
+.header-text h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 2px 0 var(--ink);
+  letter-spacing: 0.05em;
+}
+.header-text p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  margin-top: 3px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.header-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.h-tag {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink);
+  box-shadow: var(--shadow-pop-sm);
+  white-space: nowrap;
+}
+.h-tag.yellow { background: var(--pop1); }
+.h-tag.pink   { background: var(--pop2); color: #fff; }
+
+/* ── MAIN ── */
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+/* ── STATS ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--white);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px 14px;
+  box-shadow: var(--shadow-pop);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.stat-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-pop-lg); }
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+.stat-card:nth-child(1)::before { background: var(--blue); }
+.stat-card:nth-child(2)::before { background: var(--pop1); }
+.stat-card:nth-child(3)::before { background: var(--pop2); }
+.stat-card:nth-child(4)::before { background: var(--pop3); }
+.stat-label {
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--ink2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1;
+}
+.stat-card:nth-child(2) .stat-value { color: #a07800; }
+.stat-card:nth-child(3) .stat-value { color: var(--pop2); }
+.stat-card:nth-child(4) .stat-value { font-size: 16px; padding-top: 10px; color: var(--ink); }
+.stat-sub { font-size: 11px; color: var(--ink2); margin-top: 4px; font-weight: 700; }
+
+/* ── CONTROL BAR ── */
+.control-bar {
+  background: var(--blue4);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-pop);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.view-tabs { display: flex; gap: 6px; }
+.view-tab {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 900;
+  font-family: 'Noto Sans JP', sans-serif;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: var(--shadow-pop-sm);
+  letter-spacing: 0.03em;
+}
+.view-tab:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+.view-tab.active {
+  background: var(--blue);
+  color: #fff;
+  transform: translate(-2px,-2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.ctrl-sep { width: 2px; height: 30px; background: var(--ink); border-radius: 2px; opacity: 0.15; }
+.ctrl-label { font-size: 12px; font-weight: 900; color: var(--ink2); white-space: nowrap; }
+select, input[type="text"] {
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  box-shadow: var(--shadow-pop-sm);
+  transition: box-shadow 0.15s, transform 0.15s;
+  min-width: 130px;
+  cursor: pointer;
+}
+select:focus, input[type="text"]:focus {
+  box-shadow: 3px 3px 0 var(--blue);
+  border-color: var(--blue);
+  transform: translate(-1px,-1px);
+}
+.search-wrap { position: relative; flex: 1; min-width: 160px; }
+.search-wrap input { width: 100%; padding-left: 34px; cursor: text; }
+.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink);
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  box-shadow: var(--shadow-pop-sm);
+  transition: transform 0.12s;
+  cursor: default;
+}
+.legend-item:hover { transform: translate(-1px,-1px); }
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+
+/* ── MONTH GROUP ── */
+.month-group { margin-bottom: 26px; }
+.month-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.month-stamp {
+  background: var(--blue);
+  color: #fff;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  padding: 4px 18px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-pop-sm);
+  letter-spacing: 0.05em;
+}
+.month-count-badge {
+  background: var(--pop1);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.month-line {
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0, var(--ink) 6px, transparent 6px, transparent 12px);
+  opacity: 0.12;
+}
+
+/* ── EVENT CARDS ── */
+.event-list { display: flex; flex-direction: column; gap: 8px; }
+.event-card {
+  background: var(--white);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px 12px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-pop);
+  transition: transform 0.12s, box-shadow 0.12s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.event-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-pop-lg); }
+.event-card.special { background: var(--blue4); }
+.event-card.special::after {
+  content: '★ SPECIAL';
+  position: absolute;
+  top: 8px; right: 12px;
+  font-size: 10px;
+  font-weight: 900;
+  background: var(--pop1);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 1px 8px;
+  color: var(--ink);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.lbar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 7px;
+  border-radius: 14px 0 0 14px;
+}
+.date-block {
+  min-width: 52px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.date-day {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1;
+}
+.date-weekday {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 900;
+  margin-top: 3px;
+  background: var(--blue3);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 1px 7px;
+  color: var(--ink);
+}
+.date-weekday.sun { background: #ffd6d6; }
+.date-weekday.sat { background: var(--blue3); }
+.sep-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.sep-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.15;
+}
+.event-body { flex: 1; min-width: 0; }
+.cat-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink);
+  margin-bottom: 4px;
+  box-shadow: 1px 1px 0 var(--ink);
+  letter-spacing: 0.02em;
+}
+.event-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-time-chip {
+  background: var(--blue4);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── BADGE COLORS ── */
+.bc-comp      { background: #d0e6ff; color: #0a3a8f; }
+.bc-esports   { background: #d4f8e8; color: #065f30; }
+.bc-digital   { background: #fff4c2; color: #7a4f00; }
+.bc-activity  { background: #ede0ff; color: #5a1a9a; }
+.bc-school    { background: #ffdde8; color: #9b1a40; }
+.bc-shotensha { background: #d0fff5; color: #065048; }
+.bc-ao        { background: #dde8ff; color: #0a2a7a; }
+
+/* ── CALENDAR ── */
+.cal-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.cal-nav h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  flex: 1;
+  text-align: center;
+  background: var(--blue);
+  color: #fff;
+  padding: 8px 0;
+  border: var(--outline);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-pop);
+  text-shadow: 1px 1px 0 var(--ink);
+}
+.nav-btn {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 900;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--blue);
+  box-shadow: var(--shadow-pop-sm);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.nav-btn:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-pop); }
+.cal-wrapper {
+  background: var(--white);
+  border: var(--outline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-pop-lg);
+}
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  background: var(--blue);
+  border-bottom: 2.5px solid var(--ink);
+}
+.cal-wday {
+  text-align: center;
+  padding: 10px 4px;
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.06em;
+}
+.cal-wday.sun { color: #ffb3b3; }
+.cal-wday.sat { color: #b3d4ff; }
+.cal-cells { display: grid; grid-template-columns: repeat(7,1fr); }
+.cal-cell {
+  min-height: 88px;
+  border-right: 1.5px solid var(--blue3);
+  border-bottom: 1.5px solid var(--blue3);
+  padding: 5px;
+  background: var(--white);
+}
+.cal-cell:nth-child(7n) { border-right: none; }
+.cal-cell.other-month { background: #f7f9ff; }
+.cal-cell.today { background: var(--blue4); }
+.cal-date-num {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.cal-date-num.sun { color: #c0392b; }
+.cal-date-num.sat { color: var(--blue); }
+.other-month .cal-date-num { color: #bbb; }
+.cal-cell.today .cal-date-num {
+  background: var(--blue);
+  color: #fff;
+  border: 2px solid var(--ink);
+}
+.cal-ev {
+  font-size: 9.5px;
+  padding: 2px 5px;
+  border-radius: 6px;
+  margin-bottom: 2px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  line-height: 1.4;
+  border: 1px solid rgba(0,0,0,0.18);
+}
+.more-tag { font-size: 10px; color: var(--ink2); font-weight: 900; padding-left: 2px; }
+
+/* ── EMPTY ── */
+.empty-state {
+  text-align: center;
+  padding: 48px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink2);
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+
+/* ── FOOTER ── */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  background: var(--blue);
+  border-top: 3px solid var(--ink);
+  text-align: center;
+  padding: 22px;
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.06em;
+}
+.footer-stars { color: var(--pop1); letter-spacing: 6px; display: block; margin-bottom: 6px; font-size: 16px; }
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+.event-card { animation: pop-in 0.2s ease both; }
+
+@media (max-width: 640px) {
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .header-tags { display: none; }
+  .cal-cell { min-height: 60px; }
+  .header-text h1 { font-size: 17px; }
+  .control-bar { gap: 8px; }
+  .ctrl-sep { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-stripes"></div>
+  <div class="header-inner">
+    <div class="header-logo">🏫</div>
+    <div class="header-text">
+      <h1>スマートライフAO富士校</h1>
+      <p>年間イベントスケジュール 2026–2027</p>
+    </div>
+    <div class="header-tags">
+      <div class="h-tag yellow">WEST</div>
+      <div class="h-tag">1130</div>
+      <div class="h-tag pink">富士BASE</div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="stats-row" id="stats-row"></div>
+
+  <div class="control-bar">
+    <div class="view-tabs">
+      <button class="view-tab active" onclick="setView('list')">📋 リスト</button>
+      <button class="view-tab" onclick="setView('calendar')">📅 カレンダー</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">カテゴリ</span>
+    <select id="cat-filter" onchange="render()">
+      <option value="">✨ すべて</option>
+      <option value="コンピュータ倶楽部">💻 コンピュータ倶楽部</option>
+      <option value="e-sports倶楽部">🎮 e-sports倶楽部</option>
+      <option value="デジタル安全倶楽部">🛡 デジタル安全倶楽部</option>
+      <option value="アクティビティ倶楽部">🌟 アクティビティ倶楽部</option>
+      <option value="学校説明会">🏫 学校説明会</option>
+      <option value="商店主倶楽部">🛍 商店主倶楽部</option>
+      <option value="AO校">🎉 AO校イベント</option>
+    </select>
+    <select id="month-filter" onchange="render()">
+      <option value="">📅 すべての月</option>
+    </select>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="キーワードで検索..." oninput="render()">
+    </div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+  <div id="list-view"></div>
+  <div id="cal-view" style="display:none;"></div>
+</main>
+
+<footer class="site-footer">
+  <span class="footer-stars">★ ★ ★</span>
+  スマートライフ富士BASE &nbsp;|&nbsp; スマートライフAO富士校 &nbsp;|&nbsp; 2026–2027 年間イベント一覧
+</footer>
+
+<script>
+const EVENTS = [
+  {date:"2026-01-03",t:"13:00-14:00",cat:"デジタル安全倶楽部",name:"インターネットの安全"},
+  {date:"2026-01-12",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"PowerPoint活用"},
+  {date:"2026-01-17",t:"13:00-14:00",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-01-22",t:"11:00-12:30",cat:"商店主倶楽部",name:"chatGPT活用"},
+  {date:"2026-01-25",t:"14:30-15:30",cat:"e-sports倶楽部",name:"フォールガイズ"},
+  {date:"2026-02-05",t:"13:00-14:00",cat:"アクティビティ倶楽部",name:"Instagramでバレンタインスイーツ探し"},
+  {date:"2026-02-08",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"PowerPoint活用"},
+  {date:"2026-02-09",t:"11:00-12:30",cat:"商店主倶楽部",name:"canvaでPOP作成"},
+  {date:"2026-02-21",t:"13:00-14:30",cat:"e-sports倶楽部",name:"マインクラフト"},
+  {date:"2026-02-23",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"子供の学びの安全"},
+  {date:"2026-03-01",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-03-05",t:"11:00-12:30",cat:"商店主倶楽部",name:"gammaで来季計画"},
+  {date:"2026-03-10",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"防災・備える安全"},
+  {date:"2026-03-14",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"AI基礎〜頼れる存在を探そう〜"},
+  {date:"2026-03-15",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-03-17",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"AIで春の旅行計画"},
+  {date:"2026-03-27",t:"13:00-14:30",cat:"e-sports倶楽部",name:"フォールガイズ"},
+  {date:"2026-04-04",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-04-04",t:"14:30-15:30",cat:"e-sports倶楽部",name:"マインクラフト"},
+  {date:"2026-04-14",t:"11:00-12:30",cat:"商店主倶楽部",name:"chatGPT活用①"},
+  {date:"2026-04-18",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"マイデバイスの進化を"},
+  {date:"2026-04-24",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"スマホとパソコンの中身を確認"},
+  {date:"2026-04-29",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"お出かけの安全"},
+  {date:"2026-05-05",t:"13:00-14:30",cat:"e-sports倶楽部",name:"マインクラフト"},
+  {date:"2026-05-09",t:"11:00-12:30",cat:"商店主倶楽部",name:"chatGPT活用②"},
+  {date:"2026-05-10",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-05-21",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"スマホを整理して使いやすく"},
+  {date:"2026-05-26",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"雨の日の快適ステイホーム"},
+  {date:"2026-05-30",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"AI活用の安全"},
+  {date:"2026-06-09",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"自然災害に備える安全"},
+  {date:"2026-06-13",t:"13:00-14:30",cat:"e-sports倶楽部",name:"世代を超えて脳トレ"},
+  {date:"2026-06-14",t:"11:00-12:30",cat:"学校説明会",name:"プロンプト講習"},
+  {date:"2026-06-16",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"早得！夏の旅行計画"},
+  {date:"2026-06-20",t:"13:00-14:30",cat:"デジタル安全倶楽部",name:"AO校講師代表による説明会"},
+  {date:"2026-06-26",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"ネットとAIで調べてみる"},
+  {date:"2026-07-07",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"Wordで案内文を作る"},
+  {date:"2026-07-11",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"インターネットの安全"},
+  {date:"2026-07-16",t:"11:00-12:30",cat:"商店主倶楽部",name:"Gemini活用①"},
+  {date:"2026-07-20",t:"14:00-15:30",cat:"e-sports倶楽部",name:"マインクラフト"},
+  {date:"2026-07-25",t:"11:00-15:00",cat:"学校説明会",name:"オープンキャンパス"},
+  {date:"2026-07-25",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-07-28",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"AIを使って夏休みの宿題攻略"},
+  {date:"2026-08-08",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"子供の学びの安全"},
+  {date:"2026-08-11",t:"13:00-14:30",cat:"e-sports倶楽部",name:"フォールガイズ"},
+  {date:"2026-08-15",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-08-16",t:"11:00-12:30",cat:"商店主倶楽部",name:"Gemini活用②"},
+  {date:"2026-08-21",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"紙の書類をデータ化"},
+  {date:"2026-08-25",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"推しをカタチに！世界に一つだけのものを"},
+  {date:"2026-09-08",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"買い物の安全"},
+  {date:"2026-09-11",t:"11:00-12:30",cat:"商店主倶楽部",name:"NotebookLM"},
+  {date:"2026-09-15",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"思い出をMovieに vlog作成"},
+  {date:"2026-09-19",t:"11:00-17:00",cat:"AO校",name:"AO校開校半年イベント"},
+  {date:"2026-09-21",t:"13:00-14:30",cat:"e-sports倶楽部",name:"世代を超えて脳トレ"},
+  {date:"2026-09-25",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"Excelで家計や予定をまとめる"},
+  {date:"2026-10-10",t:"11:00-12:30",cat:"商店主倶楽部",name:"プロンプト講習"},
+  {date:"2026-10-12",t:"13:00-14:30",cat:"e-sports倶楽部",name:"マインクラフト"},
+  {date:"2026-10-18",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-10-20",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"早得！冬の旅行計画"},
+  {date:"2026-10-26",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"お出かけの安全"},
+  {date:"2026-10-31",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"デジタルで体調を振り返る"},
+  {date:"2026-11-03",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"デジタルでも紙でも 年賀状作成"},
+  {date:"2026-11-08",t:"13:00-14:30",cat:"e-sports倶楽部",name:"フォールガイズ"},
+  {date:"2026-11-11",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"AI活用の安全"},
+  {date:"2026-11-21",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-11-25",t:"11:00-12:30",cat:"商店主倶楽部",name:"gamma資料作成"},
+  {date:"2026-11-28",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"写真やデータを整理する"},
+  {date:"2026-12-06",t:"11:00-12:30",cat:"商店主倶楽部",name:"Nolang動画作成"},
+  {date:"2026-12-07",t:"13:00-14:30",cat:"e-sports倶楽部",name:"世代を超えて脳トレ"},
+  {date:"2026-12-12",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"AIを使って冬休みの宿題攻略"},
+  {date:"2026-12-17",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"PowerPointとAIで資料作り"},
+  {date:"2026-12-20",t:"11:00-15:00",cat:"学校説明会",name:"オープンキャンパス"},
+  {date:"2026-12-20",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2026-12-20",t:"14:30-15:30",cat:"デジタル安全倶楽部",name:"買い物の安全"},
+  {date:"2027-01-03",t:"13:00-14:00",cat:"e-sports倶楽部",name:"マインクラフト"},
+  {date:"2027-01-03",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"インターネットの安全"},
+  {date:"2027-01-12",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"スマホで予定とメモ管理"},
+  {date:"2027-01-23",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2027-01-24",t:"11:00-12:30",cat:"商店主倶楽部",name:"Vrew動画作成"},
+  {date:"2027-02-07",t:"11:00-12:30",cat:"商店主倶楽部",name:"プロンプト講習"},
+  {date:"2027-02-08",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"複数端末でデータ連携"},
+  {date:"2027-02-11",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"家族で作る我が家の快適デジタルプラン"},
+  {date:"2027-02-20",t:"13:00-14:30",cat:"学校説明会",name:"AO校講師代表による説明会"},
+  {date:"2027-02-21",t:"13:00-14:30",cat:"e-sports倶楽部",name:"フォールガイズ"},
+  {date:"2027-02-23",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"子供の学びの安全"},
+  {date:"2027-03-06",t:"11:00-17:00",cat:"AO校",name:"AO校開校１周年イベント"},
+  {date:"2027-03-07",t:"11:00-12:30",cat:"商店主倶楽部",name:"Instagramビジネス版"},
+  {date:"2027-03-10",t:"14:00-15:00",cat:"デジタル安全倶楽部",name:"防災・備える安全"},
+  {date:"2027-03-14",t:"14:00-15:30",cat:"コンピュータ倶楽部",name:"デジタル環境を整える"},
+  {date:"2027-03-17",t:"13:00-14:30",cat:"アクティビティ倶楽部",name:"早得！春の旅行計画"},
+  {date:"2027-03-27",t:"13:00-14:30",cat:"e-sports倶楽部",name:"世代を超えて脳トレ"},
+];
+
+const CAT_META = {
+  "コンピュータ倶楽部":  {cls:"bc-comp",     cal:"#2979c8", icon:"💻"},
+  "e-sports倶楽部":      {cls:"bc-esports",   cal:"#16a34a", icon:"🎮"},
+  "デジタル安全倶楽部":  {cls:"bc-digital",   cal:"#d97706", icon:"🛡"},
+  "アクティビティ倶楽部":{cls:"bc-activity",  cal:"#7c3aed", icon:"🌟"},
+  "学校説明会":          {cls:"bc-school",    cal:"#dc2626", icon:"🏫"},
+  "商店主倶楽部":        {cls:"bc-shotensha", cal:"#059669", icon:"🛍"},
+  "AO校":               {cls:"bc-ao",        cal:"#1a6ef5", icon:"🎉"},
+};
+const WDLABEL = ["日","月","火","水","木","金","土"];
+let view="list", calYear=2026, calMonth=4;
+
+function setView(v){
+  view=v;
+  document.querySelectorAll(".view-tab").forEach((t,i)=>t.classList.toggle("active",(i===0&&v==="list")||(i===1&&v==="calendar")));
+  document.getElementById("list-view").style.display=v==="list"?"block":"none";
+  document.getElementById("cal-view").style.display=v==="calendar"?"block":"none";
+  render();
+}
+function wkd(ds){ return new Date(ds).getDay(); }
+function wkdCls(d){ return d===0?"sun":d===6?"sat":""; }
+function getFiltered(){
+  const cat=document.getElementById("cat-filter").value;
+  const month=document.getElementById("month-filter").value;
+  const q=document.getElementById("search").value.toLowerCase();
+  return EVENTS.filter(e=>{
+    if(cat&&e.cat!==cat)return false;
+    if(month&&!e.date.startsWith(month))return false;
+    if(q&&!e.name.toLowerCase().includes(q)&&!e.cat.toLowerCase().includes(q))return false;
+    return true;
+  });
+}
+function renderStats(){
+  const catCounts={};
+  EVENTS.forEach(e=>{catCounts[e.cat]=(catCounts[e.cat]||0)+1;});
+  const top=Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById("stats-row").innerHTML=`
+    <div class="stat-card"><div class="stat-label">TOTAL EVENTS</div><div class="stat-value">${EVENTS.length}</div><div class="stat-sub">2026.1〜2027.3</div></div>
+    <div class="stat-card"><div class="stat-label">CATEGORIES</div><div class="stat-value">${Object.keys(CAT_META).length}</div><div class="stat-sub">カテゴリ</div></div>
+    <div class="stat-card"><div class="stat-label">MONTHS</div><div class="stat-value">15</div><div class="stat-sub">月平均 ${Math.round(EVENTS.length/15)} 件</div></div>
+    <div class="stat-card"><div class="stat-label">TOP CAT</div><div class="stat-value">${CAT_META[top[0]]?.icon||"🎯"} ${top[1]}件</div><div class="stat-sub">${top[0]}</div></div>
+  `;
+}
+function renderLegend(){
+  document.getElementById("legend").innerHTML=Object.entries(CAT_META).map(([k,v])=>`
+    <div class="legend-item"><div class="legend-dot" style="background:${v.cal}"></div>${v.icon} ${k}</div>
+  `).join("");
+}
+function initMonthFilter(){
+  const sel=document.getElementById("month-filter");
+  [...new Set(EVENTS.map(e=>e.date.slice(0,7)))].sort().forEach(m=>{
+    const [y,mo]=m.split("-");
+    const o=document.createElement("option");
+    o.value=m; o.text=`${y}年${parseInt(mo)}月`;
+    sel.appendChild(o);
+  });
+}
+function renderList(){
+  const filtered=getFiltered();
+  if(!filtered.length){
+    document.getElementById("list-view").innerHTML='<div class="empty-state"><div class="icon">🔍</div><p>該当するイベントがありません</p></div>';
+    return;
+  }
+  const byMonth={};
+  filtered.forEach(e=>{const m=e.date.slice(0,7);if(!byMonth[m])byMonth[m]=[];byMonth[m].push(e);});
+  let html='<div class="event-list">';
+  Object.keys(byMonth).sort().forEach(m=>{
+    const [y,mo]=m.split("-");
+    html+=`<div class="month-group">
+      <div class="month-header">
+        <span class="month-stamp">${y}年 ${parseInt(mo)}月</span>
+        <span class="month-count-badge">${byMonth[m].length}件</span>
+        <div class="month-line"></div>
+      </div>`;
+    byMonth[m].forEach((e,i)=>{
+      const d=e.date.split("-");
+      const wd=wkd(e.date);
+      const meta=CAT_META[e.cat]||{cls:"bc-ao",icon:""};
+      const lcolor=(CAT_META[e.cat]||{cal:"#1a6ef5"}).cal;
+      const isSpecial=e.cat==="AO校"||e.name.includes("オープンキャンパス")||e.name.includes("周年");
+      html+=`<div class="event-card${isSpecial?" special":""}" style="animation-delay:${i*0.025}s">
+        <div class="lbar" style="background:${lcolor}"></div>
+        <div class="date-block">
+          <div class="date-day">${parseInt(d[2])}</div>
+          <div class="date-weekday ${wkdCls(wd)}">${WDLABEL[wd]}</div>
+        </div>
+        <div class="sep-dots"><div class="sep-dot"></div><div class="sep-dot"></div><div class="sep-dot"></div></div>
+        <div class="event-body">
+          <span class="cat-badge ${meta.cls}">${meta.icon} ${e.cat}</span>
+          <div class="event-name">${e.name}</div>
+        </div>
+        <div class="event-time-chip">🕐 ${e.t}</div>
+      </div>`;
+    });
+    html+='</div>';
+  });
+  html+='</div>';
+  document.getElementById("list-view").innerHTML=html;
+}
+function renderCalendar(){
+  const filtered=getFiltered();
+  const evMap={};
+  filtered.forEach(e=>{if(!evMap[e.date])evMap[e.date]=[];evMap[e.date].push(e);});
+  const firstDay=new Date(calYear,calMonth-1,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth,0).getDate();
+  const prevDays=new Date(calYear,calMonth-1,0).getDate();
+  const today="2026-03-22";
+  let html=`<div class="cal-nav">
+    <button class="nav-btn" onclick="calPrev()">◀</button>
+    <h3>${calYear}年 ${calMonth}月</h3>
+    <button class="nav-btn" onclick="calNext()">▶</button>
+  </div>
+  <div class="cal-wrapper">
+    <div class="cal-weekdays">${WDLABEL.map((w,i)=>`<div class="cal-wday${i===0?" sun":i===6?" sat":""}">${w}</div>`).join("")}</div>
+    <div class="cal-cells">`;
+  for(let i=0;i<firstDay;i++)html+=`<div class="cal-cell other-month"><div class="cal-date-num">${prevDays-firstDay+1+i}</div></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const ds=`${calYear}-${String(calMonth).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const evts=evMap[ds]||[];
+    const wd=new Date(calYear,calMonth-1,d).getDay();
+    html+=`<div class="cal-cell${ds===today?" today":""}">
+      <div class="cal-date-num ${wkdCls(wd)}">${d}</div>
+      ${evts.slice(0,3).map(e=>{const c=(CAT_META[e.cat]||{cal:"#888"}).cal;return`<div class="cal-ev" style="background:${c}" title="${e.cat}：${e.name}">${e.name}</div>`;}).join("")}
+      ${evts.length>3?`<div class="more-tag">+${evts.length-3}</div>`:""}
+    </div>`;
+  }
+  const trailing=42-firstDay-daysInMonth;
+  for(let d=1;d<=trailing;d++)html+=`<div class="cal-cell other-month"><div class="cal-date-num">${d}</div></div>`;
+  html+='</div></div>';
+  document.getElementById("cal-view").innerHTML=html;
+}
+function calPrev(){calMonth--;if(calMonth<1){calMonth=12;calYear--;}renderCalendar();}
+function calNext(){calMonth++;if(calMonth>12){calMonth=1;calYear++;}renderCalendar();}
+function render(){if(view==="list")renderList();else renderCalendar();}
+
+initMonthFilter();
+renderStats();
+renderLegend();
+render();
+</script>
+</body>
+</html>
